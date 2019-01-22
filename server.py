@@ -13,6 +13,11 @@ AWESOMENESS = [
     'oh-so-not-meh', 'brilliant', 'ducky', 'coolio', 'incredible',
     'wonderful', 'smashing', 'lovely']
 
+DISSES = [
+
+    'leave me', 'omg ur ugly', 'I am unimpressed', 'what are thoooose',
+    'noncoolio', 'dumb', 'meh', 'sad', 'poop' ]
+
 
 @app.route("/")
 def start_here():
@@ -26,8 +31,6 @@ def start_here():
 @app.route("/hello")
 def say_hello():
     """Say hello and prompt for user's name."""
-
-    
 
     return """
     <!doctype html>
@@ -48,7 +51,18 @@ def say_hello():
               <option value="fire">Fire</option>
           </select>
           <input type="submit" value="Submit">
-        </form>
+          </form>
+          <br><br>
+          <br>
+          <br>
+          <br>
+          What's your name? 
+          <form action="/diss">
+          <input type="text" name="person"><br><br>
+           
+            <input type="submit" value="Diss me">
+            </form>
+        
       </body>
     </html>
     """
@@ -60,7 +74,7 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliment = request.args.get("compliment")
 
 
     return """
@@ -74,6 +88,27 @@ def greet_person():
       </body>
     </html>
     """.format(player, compliment)
+
+@app.route("/diss")
+def diss_person():
+    """ Disses the person."""
+
+    player = request.args.get("person")
+
+    diss = choice(DISSES)
+
+    return"""
+    <!doctype html>
+    <html>
+        <head>
+            <title> A diss </title>
+        </head>
+        <body>
+            Hi {}, you {}.
+        </body>
+
+    </html>
+    """.format(player, diss)
 
 
 if __name__ == "__main__":
