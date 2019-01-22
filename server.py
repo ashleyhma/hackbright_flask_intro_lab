@@ -37,7 +37,7 @@ def say_hello():
       </head>
       <body>
         <h1>Hi There!</h1>
-        <form action="/hello" method="GET">
+        <form action="/greet" method="GET">
           What's your name? 
           <input type="text" name="person"><br><br>
           Select from the following:
@@ -62,7 +62,6 @@ def greet_person():
 
     compliment = choice(AWESOMENESS)
 
-    y = x
 
     return """
     <!doctype html>
